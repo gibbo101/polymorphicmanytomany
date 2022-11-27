@@ -31,3 +31,26 @@ Route::get('/create', function() {
   $video->tags()->save($tag2);
 
 });
+
+Route::get('/read', function() {
+  $post = Post::findOrFail(3);
+  foreach($post->tags as $tag) {
+    echo $tag;
+  }
+});
+
+
+Route::get('/update', function() {
+  // $post = Post::findOrFail(3);
+  // foreach($post->tags as $tag) {
+  //   $tag->whereName('PHP')->update(['name'=>'Updated PHP']);
+  // }
+
+  $post = Post::findOrFail(3);
+  $tag = Tag::find(3);
+  // $post->tags()->save($tag);
+
+
+  // $post->tags()->attach($tag);
+  $post->tags()->sync([1]);
+});
